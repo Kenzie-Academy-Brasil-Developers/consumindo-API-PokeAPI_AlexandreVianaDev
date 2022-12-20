@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="./src/styles/reset.css">
     <link rel="stylesheet" href="./src/styles/globalStyles.css">
     <link rel="stylesheet" href="./src/styles/index.css">
-    <script src="./src/scripts/index.js" defer></script>
     <script src="./src/scripts/requests.js" defer></script>
+    <script src="./src/scripts/index.js" defer></script>
     <title>Consumindo PokeAPI</title>
   </head>
 
@@ -22,7 +22,7 @@
         <img src="./src/assets/pokeapi.png" alt="POKEAPI">
         <form class="search__form">
           <input type="text" name="search" id="search" placeholder="Pesquisar por...">
-          <button><img src="./src/assets/search-icon.png" alt="Search"></button>
+          <button type="button" class="search__button"><img src="./src/assets/search-icon.png" alt="Search"></button>
         </form>
       </div>
     </header>
@@ -32,26 +32,8 @@
         <h1 class="title-1">Lista de Pokémon</h1>
 
         <ul class="pokemons__list">
-          <li class="pokemon__card">
-            <img src="./src/assets/1 2.svg" alt="">
-            <span class="text-1">Magikarp</span>
-          </li>
-          <li class="pokemon__card">
-            <img src="./src/assets/1 2.svg" alt="">
-            <span class="text-1">Magikarp</span>
-          </li>
-          <li class="pokemon__card">
-            <img src="./src/assets/1 2.svg" alt="">
-            <span class="text-1">Magikarp</span>
-          </li>
-          <li class="pokemon__card">
-            <img src="./src/assets/1 2.svg" alt="">
-            <span class="text-1">Magikarp</span>
-          </li>
-          <li class="pokemon__card">
-            <img src="./src/assets/1 2.svg" alt="">
-            <span class="text-1">Magikarp</span>
-          </li>
+          <li id="loading" class="text-2">Carregando...</li>
+
         </ul>
       </div>
     </main>
