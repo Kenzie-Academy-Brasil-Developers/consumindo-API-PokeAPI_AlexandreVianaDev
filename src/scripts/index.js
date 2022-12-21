@@ -1,8 +1,8 @@
 /* Monte sua lógica aqui */
-async function renderizaPokemons (pokemonName) { // pokemonNome é uma tentativa
+async function renderizaPokemons () { 
     const ulList = document.querySelector(".pokemons__list")
 
-    const listaDePokemons = await consomePokeAPI(pokemonName); // pokemonNome é uma tentativa
+    const listaDePokemons = await consomePokeAPI(); 
     
     listaDePokemons.results.forEach(pokemon => {
 
@@ -16,17 +16,44 @@ async function renderizaPokemons (pokemonName) { // pokemonNome é uma tentativa
         `)
     })
 
-    // console.log(listaDePokemons)
 }
 
-renderizaPokemons() // pokemonNome é uma tentativa
-
-function prepararPesquisa () {
+function renderizarPesquisa () {
     const button = document.querySelector(".search__button")
+    const input = document.querySelector("#search")
 
-    button.addEventListener("click", (event) => {
+    const ulList = document.querySelector(".pokemons__list")
+
+    button.addEventListener("click", async (event) => {
+        ulList.innerHTML = `<li id="loading" class="text-2">Carregando...</li>`
+
         event.preventDefault()
-
+        const pokemon = await pesquisarPokemonNaAPI(input.value)
+        pokemon.forEach(pokemon => {
+        ulList.insertAdjacentHTML("beforeend", `
+                <li class="pokemon__card">
+                    <img src="${pokemon.sprites.front_default}" alt=${pokemon.name}" alt="">
+                    <h3 class="text-1">${pokemon.name}</h3>
+                </li>
+            `)
+        })
     })
 
+    input.addEventListener("keypress", async (event) => {
+        if (event.key == "Enter") {           
+            ulList.innerHTML = `<li id="loading" class="text-2">Carregando...</li>`
+    
+            event.preventDefault()
+            const pokemon = await pesquisarPokemonNaAPI(input.value)
+            ulList.insertAdjacentHTML("beforeend", `
+                    <li class="pokemon__card">
+                        <img src="${pokemon.sprites.front_default}" alt=${pokemon.name}" alt="">
+                        <h3 class="text-1">${pokemon.name}</h3>
+                    </li>
+                `)
+        }
+    })
 }
+
+renderizaPokemons()
+renderizarPesquisa ()
